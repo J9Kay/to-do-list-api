@@ -1,5 +1,7 @@
 package com.example.todolist.model;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 
 @Entity
@@ -7,6 +9,9 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @NotBlank(message = "Description must not be blank")
+    @Size(max = 255, message = "Description must not exceed 255 characters")
     private String description;
     private boolean isCompleted;
 

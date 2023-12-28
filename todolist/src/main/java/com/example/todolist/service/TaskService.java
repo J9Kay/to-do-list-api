@@ -2,7 +2,6 @@ package com.example.todolist.service;
 
 import com.example.todolist.model.Task;
 import com.example.todolist.repository.TaskRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,7 +10,6 @@ import java.util.List;
 public class TaskService {
     private final TaskRepository taskRepository;
 
-    @Autowired
     public TaskService(TaskRepository taskRepository) {
         this.taskRepository = taskRepository;
     }

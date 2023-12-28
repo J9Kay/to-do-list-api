@@ -2,7 +2,7 @@ package com.example.todolist.controller;
 
 import com.example.todolist.model.Task;
 import com.example.todolist.service.TaskService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +13,6 @@ import java.util.List;
 public class TaskController {
     private final TaskService taskService;
 
-    @Autowired
     public TaskController(TaskService taskService) {
         this.taskService = taskService;
     }
@@ -27,10 +26,11 @@ public class TaskController {
     public Task getTaskById(@PathVariable Long id) {
         return taskService.getTaskById(id);
     }
-
-    @PostMapping
-    public Task createTask(@RequestBody Task task) {
-        return taskService.saveTask(task);
+    
+     @PostMapping
+    public ResponseEntity<Task> createTask(@RequestBody Task task) {
+        Task createdTask = taskService.saveTask(task);
+        return new ResponseEntity<>(createdTask, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
